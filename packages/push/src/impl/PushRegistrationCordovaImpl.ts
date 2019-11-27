@@ -1,7 +1,7 @@
 import { AbstractPushRegistration } from "../AbstractPushRegistration";
 import { OnMessageReceivedCallback, PushRegistrationOptions } from "../PushRegistration";
-import { isCordovaAndroid, isCordovaIOS } from "../PushUtils"
-import { ServiceConfiguration } from "../ServiceConfiguration"
+import { isCordovaAndroid, isCordovaIOS } from "../PushUtils";
+import { ServiceConfiguration } from "../ServiceConfiguration";
 
 declare var window: any;
 
