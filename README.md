@@ -1,7 +1,7 @@
 # AeroGear Push SDK for JavaScript 
 
-[![circle-ci](https://img.shields.io/circleci/project/github/aerogear/aerogear-push-js-sdk/master.svg)](https://circleci.com/gh/aerogear/aerogear-push-js-sdk)
-[![Coverage Status](https://coveralls.io/repos/github/aerogear/aerogear-push-js-sdk/badge.svg?branch=master)](https://coveralls.io/github/aerogear/aerogear-push-js-sdk?branch=master)
+[![circle-ci](https://img.shields.io/circleci/project/github/aerogear/aerogear-push-js/master.svg)](https://circleci.com/gh/aerogear/aerogear-push-js)
+[![Coverage Status](https://coveralls.io/repos/github/aerogear/aerogear-push-js/badge.svg?branch=master)](https://coveralls.io/github/aerogear/aerogear-push-js?branch=master)
 [![License](https://img.shields.io/badge/-Apache%202.0-blue.svg)](https://opensource.org/s/Apache-2.0)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
@@ -18,12 +18,12 @@
 
 ## Contributing
 
-- [General Contributing Guide](https://github.com/aerogear/aerogear-push-js-sdk/blob/master/CONTRIBUTING.md)
-- [Service Contributor Guide](https://github.com/aerogear/aerogear-push-js-sdk/blob/master/docs/contrib/contributing-guide.adoc)
+- [General Contributing Guide](https://github.com/aerogear/aerogear-push-js/blob/master/CONTRIBUTING.md)
+- [Service Contributor Guide](https://github.com/aerogear/aerogear-push-js/blob/master/docs/contrib/contributing-guide.adoc)
 
 ## License
 
- See [LICENSE file](https://github.com/aerogear/aerogear-push-js-sdk/blob/master/LICENSE)
+ See [LICENSE file](https://github.com/aerogear/aerogear-push-js/blob/master/LICENSE)
 
 ## Questions?
 
