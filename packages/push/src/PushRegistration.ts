@@ -1,6 +1,6 @@
-import {
-  isNative, ServiceConfiguration
-} from "@aerogear/core";
+import { isNative } from "./PushUtils";
+   
+import { ServiceConfiguration } from "./ServiceConfiguration";
 import {
   PushRegistrationInterface,
   PushRegistrationOptions,

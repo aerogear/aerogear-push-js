@@ -1,8 +1,8 @@
 {
-  "name": "AeroGearServicesWeb",
+  "name": "AeroGearServicesPush",
   "version": "1.0.0",
   "private": true,
-  "description": "AeroGear Services Web/Cordova SDK mono repository",
+  "description": "AeroGear Push Services for mobile",
   "main": "index.js",
   "scripts": {
     "test": "nyc lerna run test",

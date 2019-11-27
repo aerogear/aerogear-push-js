@@ -1,5 +1,5 @@
 import { AbstractPushRegistration } from "../AbstractPushRegistration";
-import { ServiceConfiguration } from "@aerogear/core";
+import { ServiceConfiguration } from "../ServiceConfiguration";
 import { OnMessageReceivedCallback, PushRegistrationWebpushOptions } from "../PushRegistration";
 import * as Bowser from "bowser";
 

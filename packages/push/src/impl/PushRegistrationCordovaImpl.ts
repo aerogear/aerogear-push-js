@@ -1,6 +1,7 @@
 import { AbstractPushRegistration } from "../AbstractPushRegistration";
 import { OnMessageReceivedCallback, PushRegistrationOptions } from "../PushRegistration";
-import { isCordovaAndroid, isCordovaIOS, ServiceConfiguration } from "@aerogear/core";
+import { isCordovaAndroid, isCordovaIOS } from "../PushUtils"
+import { ServiceConfiguration } from "../ServiceConfiguration"
 
 declare var window: any;
 
@@ -22,7 +23,7 @@ export class PushRegistrationCordovaImpl extends AbstractPushRegistration {
 
   private push?: any;
 
-  constructor(config: ServiceConfiguration) {
+  constructor(config: ServiceConfiguration<any>) {
     super(config);
   }
 
