@@ -1,8 +1,8 @@
 import { PushRegistrationOptions } from "./PushRegistration";
 import { PushRegistrationInterface } from "./PushRegistrationInterface";
-import { AxiosInstance} from "axios";
+import { AxiosInstance } from "axios";
 import axios from "axios";
-import { ServiceConfiguration } from "./ServiceConfiguration";
+import { PushInitConfig, PushVariant } from "./PushInitConfig";
 
 /**
  * Base class for push registration managers.
@@ -20,7 +20,7 @@ export abstract class AbstractPushRegistration implements PushRegistrationInterf
   protected readonly httpClient?: AxiosInstance;
   protected readonly platformConfig: any;
 
-  protected constructor(configuration: ServiceConfiguration<any>) {
+  protected constructor(configuration: PushInitConfig) {
     if (configuration) {
       this.validationError = this._validateConfig(configuration);
       if (this.validationError) {
@@ -36,12 +36,12 @@ export abstract class AbstractPushRegistration implements PushRegistrationInterf
     // configuration is valid
     const pushConfig = configuration;
     this.platformConfig = this.getPlatformConfig(pushConfig);
-    this.variantId = this.platformConfig.variantId || this.platformConfig.variantID;
+    this.variantId = this.platformConfig.variantID;
     const token = window.btoa(`${this.variantId}:${this.platformConfig.variantSecret}`);
     this.httpClient = axios.create({
       baseURL: pushConfig.url,
       timeout: 5000,
-      headers: {"Authorization": `Basic ${token}`}
+      headers: { "Authorization": `Basic ${token}` }
     });
 
     this.init();
@@ -90,7 +90,7 @@ export abstract class AbstractPushRegistration implements PushRegistrationInterf
    * Extracts the platform configuration from the current push configuration object.
    * @param pushConfig The push configuration object.
    */
-  public abstract getPlatformConfig(pushConfig: ServiceConfiguration): any;
+  public abstract getPlatformConfig(pushConfig: PushInitConfig): PushVariant | undefined;
 
   /**
    * Performs custom validations to the configuration.
@@ -98,7 +98,7 @@ export abstract class AbstractPushRegistration implements PushRegistrationInterf
    * @param pushConfig The push configuration
    * @return undefined if no errors has been found, a string containing the detail of the error otherwise.
    */
-  protected validateConfig(pushConfig: ServiceConfiguration): string | undefined {
+  protected validateConfig(pushConfig: PushInitConfig): string | undefined {
     return undefined;
   }
 
@@ -114,8 +114,8 @@ export abstract class AbstractPushRegistration implements PushRegistrationInterf
    * @param pushConfig the configuration
    * @private
    */
-  private _validateConfig(pushConfig: ServiceConfiguration): string | undefined {
-    if (!pushConfig || !pushConfig.config) {
+  private _validateConfig(pushConfig: PushInitConfig): string | undefined {
+    if (!pushConfig) {
       return "UnifiedPush server configuration not found";
     }
 
@@ -129,7 +129,7 @@ export abstract class AbstractPushRegistration implements PushRegistrationInterf
       return "Platform is not supported by UnifiedPush";
     }
 
-    if (!(platformConfig.variantId || platformConfig.variantID)) {
+    if (!platformConfig.variantID) {
       return "UnifiedPush VariantId is not defined";
     }
 
