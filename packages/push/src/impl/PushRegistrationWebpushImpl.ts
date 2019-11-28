@@ -1,7 +1,7 @@
 import { AbstractPushRegistration } from "../AbstractPushRegistration";
-import { ServiceConfiguration } from "../ServiceConfiguration";
 import { OnMessageReceivedCallback, PushRegistrationWebpushOptions } from "../PushRegistration";
 import * as Bowser from "bowser";
+import { PushInitConfig, PushVariant } from "../PushInitConfig";
 
 declare var window: any;
 
@@ -24,7 +24,7 @@ export class PushRegistrationWebpushImpl extends AbstractPushRegistration {
 
   private static onMessageReceivedCallback: OnMessageReceivedCallback;
 
-  constructor(config: ServiceConfiguration) {
+  constructor(config: PushInitConfig) {
     super(config);
     // The config is valid
   }
@@ -73,12 +73,13 @@ export class PushRegistrationWebpushImpl extends AbstractPushRegistration {
     }
   }
 
-  public getPlatformConfig(pushConfig: ServiceConfiguration): any {
-    return pushConfig.config.web_push;
+  public getPlatformConfig(pushConfig: PushInitConfig): PushVariant | undefined {
+    return pushConfig.webpush;
   }
 
-  protected validateConfig(pushConfig: ServiceConfiguration): string | undefined {
-    if (!this.getPlatformConfig(pushConfig).appServerKey) {
+  protected validateConfig(pushConfig: PushInitConfig): string | undefined {
+    const config = this.getPlatformConfig(pushConfig);
+    if (!config || !config.appServerKey) {
       return "No appServerKey found in service configuration";
     }
   }

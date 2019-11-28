@@ -40,11 +40,9 @@ describe("Push", () => {
 
   const config = {
     "url": "http://www.mocky.io/v2/5a5e4bc53300003b291923eb",
-    "config": {
-      "ios": {
-        "variantId": "f85015b4-a762-49a7-a36f-34a451f819a4",
-        "variantSecret": "978b35d6-7058-43b4-8c37-4dc30022ebda"
-      }
+    "ios": {
+      "variantID": "f85015b4-a762-49a7-a36f-34a451f819a4",
+      "variantSecret": "978b35d6-7058-43b4-8c37-4dc30022ebda"
     }
   };
 

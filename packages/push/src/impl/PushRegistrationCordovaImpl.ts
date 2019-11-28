@@ -1,7 +1,7 @@
 import { AbstractPushRegistration } from "../AbstractPushRegistration";
 import { OnMessageReceivedCallback, PushRegistrationOptions } from "../PushRegistration";
 import { isCordovaAndroid, isCordovaIOS } from "../PushUtils";
-import { ServiceConfiguration } from "../ServiceConfiguration";
+import { PushInitConfig, PushVariant } from "../PushInitConfig";
 
 declare var window: any;
 
@@ -23,7 +23,7 @@ export class PushRegistrationCordovaImpl extends AbstractPushRegistration {
 
   private push?: any;
 
-  constructor(config: ServiceConfiguration<any>) {
+  constructor(config: PushInitConfig) {
     super(config);
   }
 
@@ -123,16 +123,16 @@ export class PushRegistrationCordovaImpl extends AbstractPushRegistration {
     });
   }
 
-  public getPlatformConfig(pushConfig: ServiceConfiguration): any {
+  public getPlatformConfig(pushConfig: PushInitConfig): PushVariant | undefined {
     if (isCordovaAndroid()) {
-      return pushConfig.config.android;
+      return pushConfig.android;
     } else if (isCordovaIOS()) {
-      return pushConfig.config.ios;
+      return pushConfig.ios;
     }
     return undefined;
   }
 
-  protected validateConfig(pushConfig: ServiceConfiguration): string | undefined {
+  protected validateConfig(): string | undefined {
     if (!window || !window.device || !window.PushNotification) {
       return "@aerogear/cordova-plugin-aerogear-push plugin not installed.";
     }

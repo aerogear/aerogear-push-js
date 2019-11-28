@@ -41,14 +41,11 @@ function storageMock() {
 describe("Push", () => {
 
   const config = {
-    "type": "push",
     "url": "http://www.mocky.io/v2/5a5e4bc53300003b291923eb",
-    "config": {
-      "web_push": {
-        "variantId": "f85015b4-a762-49a7-a36f-34a451f819a4",
-        "variantSecret": "978b35d6-7058-43b4-8c37-4dc30022ebda",
-        "appServerKey": "BIk8YK3iWC3BfMt3GLEghzY4v5GwaZsTWKxDKm-FZry3Nx2E_q-4VW3501DkQ5TX1Pe7c3yIsajUk9hQAo3sT-0"
-      }
+    "webpush": {
+      "variantID": "f85015b4-a762-49a7-a36f-34a451f819a4",
+      "variantSecret": "978b35d6-7058-43b4-8c37-4dc30022ebda",
+      "appServerKey": "BIk8YK3iWC3BfMt3GLEghzY4v5GwaZsTWKxDKm-FZry3Nx2E_q-4VW3501DkQ5TX1Pe7c3yIsajUk9hQAo3sT-0"
     }
   };
 
@@ -171,15 +168,15 @@ describe("Push", () => {
     it("should fail because miss variantId", async () => {
       const missVariantIdConfig = {
         "url": "http://www.mocky.io/v2/5a5e4bc53300003b291923eb",
-        "config": {
-          "ios": {
-            "variantSecret": "978b35d6-7058-43b4-8c37-4dc30022ebda"
-          }
+
+        "ios": {
+          "variantSecret": "978b35d6-7058-43b4-8c37-4dc30022ebda"
         }
+
       };
 
       try {
-        const registration = new PushRegistrationWebpushImpl(missVariantIdConfig);
+        const registration = new PushRegistrationWebpushImpl(missVariantIdConfig as any);
         await registration.register();
       } catch (_) {
         return;
@@ -191,15 +188,13 @@ describe("Push", () => {
     it("should fail because miss variantSecret", async () => {
       const missVariantIdConfig = {
         "url": "http://www.mocky.io/v2/5a5e4bc53300003b291923eb",
-        "config": {
-          "ios": {
-            "variantId": "f85015b4-a762-49a7-a36f-34a451f819a4"
-          }
+        "ios": {
+          "variantID": "f85015b4-a762-49a7-a36f-34a451f819a4"
         }
       };
 
       try {
-        const registration = new PushRegistrationWebpushImpl(missVariantIdConfig);
+        const registration = new PushRegistrationWebpushImpl(missVariantIdConfig as any);
         await registration.register();
       } catch (_) {
         return;

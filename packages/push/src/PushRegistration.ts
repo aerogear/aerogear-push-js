@@ -1,10 +1,11 @@
 import { isNative } from "./PushUtils";
-import { ServiceConfiguration } from "./ServiceConfiguration";
+
 import {
   PushRegistrationInterface,
   PushRegistrationOptions,
   PushRegistrationWebpushOptions } from "./PushRegistrationInterface";
 import { PushRegistrationWebpushImpl, PushRegistrationCordovaImpl } from "./impl";
+import { PushInitConfig } from "./PushInitConfig";
 
 export type OnMessageReceivedCallback = (notification: any) => void;
 
@@ -35,7 +36,7 @@ export class PushRegistration implements PushRegistrationInterface {
 
   private readonly delegate: PushRegistrationInterface;
 
-  constructor(config: ServiceConfiguration) {
+  constructor(config: PushInitConfig) {
     if (!isNative()) {
       this.delegate = new PushRegistrationWebpushImpl(config);
     } else {
